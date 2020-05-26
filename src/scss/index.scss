@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+}
+
+.form {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.form__input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 50%;
+}
+
+input[type="text"] {
+  width: 100%;
+  font-size: 8vw;
+  border: none;
+  outline: none;
+  text-align: center;
+  background: transparent;
+  font-family: 'Jost', sans-serif;
+  color: rebeccapurple;
+}
+
+#result {
+  font-size: 8vw;
+  padding: 25px;
+  font-family: Tahoma, sans-serif;
+  text-align: center;
+  font-weight: bold;
+  color: rebeccapurple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 50%;
+  background-color: rebeccapurple;
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+#copy {
+  display: none;
+  border: none;
+  outline: none;
+  padding: 10px;
+  background-color: rebeccapurple;
+  color: #fff;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -100px;
+  margin-top: -30px;
+  width: 200px;
+  height: 60px;
+}
+
+#share {
+  position: absolute;
+  left: 50%;
+  bottom: 25px;
+  margin-left: -181px;
+  display: none;
+}
+
+#copy:hover {
+  transform: scale(1.2);
+}
+
+#result:not(:empty) + #copy {
+  display: block;
+}
+
+#result:not(:empty) + #copy + #share {
+  display: block;
+}
+
+.letter {
+  cursor: pointer;
+  user-select: none;
+  padding: 15px;
+  border: 1px solid #fff;
+  margin-right: 15px;
+  height: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.letter:first-child {
+  margin-left: 15px;
+}
+
+.letter:hover {
+  color: rebeccapurple;
+  background-color: #fff;
+}
