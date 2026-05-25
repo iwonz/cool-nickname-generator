@@ -5,7 +5,8 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "target": "es5",
-    "allowJs": false
+    "allowJs": false,
+    "types": []
   },
   "exclude": ["node_modules"]
 }

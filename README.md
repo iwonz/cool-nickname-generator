@@ -5,3 +5,7 @@ A simple way to turn plain text into something cool for use, for example, in gam
 After typing, you can click on the buttons or scroll inside them to change the character.
 
 Inspired by [Nikita Kotoval](https://vk.com/id504718134) [article](https://vk.com/@idkotoval-bukvovki).
+
+## Deploy
+
+Run `yarn deploy` to build the site and publish `dist/` to the `gh-pages` branch.

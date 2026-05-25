@@ -4,16 +4,19 @@
   "description": "Cool Nickname Generator is a simple way to turn plain text into something cool for use, for example, in games.",
   "homepage": "http://iwonz.github.io/cool-nickname-generator",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack --mode=production",
+    "start": "node --openssl-legacy-provider ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 127.0.0.1",
+    "build": "node --openssl-legacy-provider ./node_modules/webpack/bin/webpack.js --mode=production",
     "pretty-quick": "pretty-quick --verbose",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "resolutions": {
+    "browserslist": "^4.28.2",
+    "caniuse-lite": "^1.0.30001793"
   },
   "author": "https://github.com/iwonz",
   "license": "ISC",
@@ -21,7 +24,8 @@
     "@types/animejs": "^3.1.1",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
-    "copy-webpack-plugin": "^5.0.4",
+    "browserslist": "^4.28.2",
+    "caniuse-lite": "^1.0.30001793",
     "css-loader": "^3.2.0",
     "cssnano": "^4.1.10",
     "eslint": "^6.2.2",
@@ -43,11 +47,12 @@
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-cli": "^4",
+    "webpack-dev-server": "^4"
   },
   "dependencies": {
     "animejs": "^3.2.0",
     "copy-text-to-clipboard": "^2.2.0"
-  }
+  },
+  "packageManager": "yarn@4.15.0+sha512.07ec708ac11e2eaa4ea2b04cfbb272812f7e74a753f1595eaef4486c663a98306a30cca3e6fc40f7a0b168dcfb3a2490b6a5e0501e20fb69cc36f563dd161c53"
 }

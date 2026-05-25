@@ -31,7 +31,7 @@ html {
   flex-basis: 50%;
 }
 
-input[type="text"] {
+input[type='text'] {
   width: 100%;
   font-size: 8vw;
   border: none;
@@ -39,7 +39,13 @@ input[type="text"] {
   text-align: center;
   background: transparent;
   font-family: 'Jost', sans-serif;
+  font-weight: 100;
   color: rebeccapurple;
+}
+
+input[type='text']::placeholder {
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
 }
 
 #result {
@@ -67,7 +73,7 @@ input[type="text"] {
   background-color: rebeccapurple;
   color: #fff;
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: absolute;
   left: 50%;
   top: 50%;

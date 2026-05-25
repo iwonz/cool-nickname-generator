@@ -3,7 +3,7 @@ import './assets';
 import copy from 'copy-text-to-clipboard';
 import anime from 'animejs';
 
-import {debounce, transform, Word} from './utils';
+import { debounce, transform, Word } from './utils';
 
 const resultElement: any = document.getElementById('result');
 const copyButton: any = document.getElementById('copy');
@@ -17,15 +17,18 @@ if (predefined) {
 
 setTimeout(() => nicknameInput.focus(), 100);
 
-declare module Ya {
-  const share2: Function;
-}
+declare const Ya: any;
 
-const shareWidget = Ya.share2(document.getElementById('share'), {
-  theme: {
-    services: 'vkontakte,facebook,twitter,reddit,evernote,linkedin,lj,tumblr,viber,whatsapp,skype,telegram'
-  }
-});
+let shareWidget: any;
+
+if (typeof Ya !== 'undefined' && Ya.share2) {
+  shareWidget = Ya.share2(document.getElementById('share'), {
+    theme: {
+      services:
+        'vkontakte,facebook,twitter,reddit,evernote,linkedin,lj,tumblr,viber,whatsapp,skype,telegram',
+    },
+  });
+}
 
 function getImageBlob() {
   const canvas = document.createElement('canvas');
@@ -46,23 +49,35 @@ function getImageBlob() {
   }
 
   ctx.fillStyle = '#ffffff';
-  ctx.fillText(word.text, (canvas.width / 2) - ctx.measureText(word.text).width / 2, (canvas.height / 1.5));
+  ctx.fillText(
+    word.text,
+    canvas.width / 2 - ctx.measureText(word.text).width / 2,
+    canvas.height / 1.5,
+  );
 
-  return canvas.toDataURL('image/webp', .01);
+  return canvas.toDataURL('image/webp', 0.01);
 }
 
-const updateWidget = debounce(function () {
+const updateWidget = debounce(function() {
+  if (!shareWidget) {
+    return;
+  }
+
   shareWidget.updateContent({
     url: `${window.location.origin}${window.location.pathname}#${nicknameInput.value}`,
     title: `My nickname ${nicknameInput.value} looks like ${word.text} if you write it in cool characters.`,
-    description: `Cool Nickname Generator transform my nickname ${nicknameInput.value} to ${word.text} using cool characters. ${getImageBlob()}`,
+    description: `Cool Nickname Generator transform my nickname ${nicknameInput.value} to ${
+      word.text
+    } using cool characters. ${getImageBlob()}`,
     image: getImageBlob(),
   });
 }, 300);
 
 function process() {
   const animated: any = [];
-  const letters = [...resultElement.querySelectorAll('.letter')].map((letter: HTMLElement) => letter.innerHTML);
+  const letters = [...resultElement.querySelectorAll('.letter')].map(
+    (letter: HTMLElement) => letter.innerHTML,
+  );
   resultElement.innerHTML = '';
 
   word.letters.forEach((letter, index) => {
@@ -86,7 +101,7 @@ function process() {
   anime({
     targets: animated,
     translateY: [100, 0],
-    delay: anime.stagger(50)
+    delay: anime.stagger(50),
   });
 }
 
@@ -124,7 +139,9 @@ resultElement.addEventListener('wheel', (event: any) => {
 
   const isNext = event.deltaX > 0 || event.deltaY > 0;
   const letterIndex = Number(event.target.dataset.letterIndex);
-  const letter = isNext ? word.letters[letterIndex].nextTransformed : word.letters[letterIndex].prevTransformed;
+  const letter = isNext
+    ? word.letters[letterIndex].nextTransformed
+    : word.letters[letterIndex].prevTransformed;
 
   event.target.innerHTML = letter;
 

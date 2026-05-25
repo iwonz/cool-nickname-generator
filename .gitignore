@@ -12,5 +12,8 @@ out/
 # Node dependency directory
 node_modules/
 
+# Yarn local install metadata
+.yarn/install-state.gz
+
 # OSX
 **/.DS_Store
