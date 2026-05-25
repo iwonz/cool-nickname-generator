@@ -1,7 +1,7 @@
 import './assets';
 
 import copy from 'copy-text-to-clipboard';
-import anime from 'animejs';
+import { animate, stagger } from 'animejs';
 
 import { debounce, transform, Word } from './utils';
 
@@ -34,6 +34,10 @@ function getImageBlob() {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
+  if (!ctx) {
+    throw new Error('Could not create canvas context');
+  }
+
   canvas.width = 180;
   canvas.height = 84;
 
@@ -58,7 +62,7 @@ function getImageBlob() {
   return canvas.toDataURL('image/webp', 0.01);
 }
 
-const updateWidget = debounce(function() {
+const updateWidget = debounce(function () {
   if (!shareWidget) {
     return;
   }
@@ -98,10 +102,9 @@ function process() {
 
   updateWidget();
 
-  anime({
-    targets: animated,
+  animate(animated, {
     translateY: [100, 0],
-    delay: anime.stagger(50),
+    delay: stagger(50),
   });
 }
 

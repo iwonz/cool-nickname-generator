@@ -6,53 +6,50 @@
   "scripts": {
     "start": "node --openssl-legacy-provider ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 127.0.0.1",
     "build": "node --openssl-legacy-provider ./node_modules/webpack/bin/webpack.js --mode=production",
+    "prepare": "husky",
     "pretty-quick": "pretty-quick --verbose",
     "deploy": "yarn build && gh-pages -d dist"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "resolutions": {
     "browserslist": "^4.28.2",
-    "caniuse-lite": "^1.0.30001793"
+    "caniuse-lite": "^1.0.30001793",
+    "uuid": "11.1.1"
   },
   "author": "https://github.com/iwonz",
   "license": "ISC",
   "devDependencies": {
-    "@types/animejs": "^3.1.1",
-    "@typescript-eslint/eslint-plugin": "^2.0.0",
-    "@typescript-eslint/parser": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
     "browserslist": "^4.28.2",
     "caniuse-lite": "^1.0.30001793",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "eslint": "^6.2.2",
-    "eslint-config-prettier": "^6.1.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "file-loader": "^4.2.0",
-    "gh-pages": "^2.1.1",
-    "html-webpack-plugin": "^3.2.0",
-    "husky": "^3.0.4",
-    "postcss-import": "^12.0.1",
-    "postcss-loader": "^3.0.0",
-    "postcss-nested": "^4.1.2",
-    "postcss-nesting": "^7.0.1",
-    "postcss-preset-env": "^6.7.0",
-    "postcss-scss": "^2.0.0",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1",
-    "style-loader": "^1.0.0",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.5.3",
-    "webpack": "^4.39.2",
-    "webpack-cli": "^4",
-    "webpack-dev-server": "^4"
+    "css-loader": "^7.1.4",
+    "cssnano": "^8.0.1",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "file-loader": "^6.2.0",
+    "gh-pages": "^6.3.0",
+    "html-webpack-plugin": "^5.6.7",
+    "husky": "^9.1.7",
+    "postcss": "^8.5.15",
+    "postcss-import": "^16.1.1",
+    "postcss-loader": "^8.2.1",
+    "postcss-nested": "^7.0.2",
+    "postcss-nesting": "^14.0.0",
+    "postcss-preset-env": "^11.3.0",
+    "postcss-scss": "^4.0.9",
+    "prettier": "^3.8.3",
+    "pretty-quick": "^4.2.2",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
+    "webpack": "^5.107.1",
+    "webpack-cli": "^7.0.2",
+    "webpack-dev-server": "^5.2.4"
   },
   "dependencies": {
-    "animejs": "^3.2.0",
-    "copy-text-to-clipboard": "^2.2.0"
+    "animejs": "^4.4.1",
+    "copy-text-to-clipboard": "^3.2.2"
   },
   "packageManager": "yarn@4.15.0+sha512.07ec708ac11e2eaa4ea2b04cfbb272812f7e74a753f1595eaef4486c663a98306a30cca3e6fc40f7a0b168dcfb3a2490b6a5e0501e20fb69cc36f563dd161c53"
 }

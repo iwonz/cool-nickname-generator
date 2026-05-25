@@ -6,6 +6,7 @@ module.exports = (env, argv) => {
 
   return {
     mode: 'development',
+    target: 'web',
     entry: './src/ts/index.ts',
     module: {
       rules: [

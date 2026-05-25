@@ -6,7 +6,7 @@ export interface Letter {
   transformed: string;
   transformedIndex: number;
   prevTransformed: string;
-  nextTransformed: number;
+  nextTransformed: string;
 }
 
 export interface Word {
@@ -58,13 +58,15 @@ export function getLetter(str: string, index: number): Letter {
       this.transformed = letters[this.transformedIndex];
 
       return letters[this.transformedIndex];
-    }
+    },
   };
 
   try {
     const letters = DICTIONARY[str.toLowerCase()];
 
-    if (!letters) { return letter; }
+    if (!letters) {
+      return letter;
+    }
 
     const transformedIndex = getRandomIndex(letters.length);
     const randomLetter = letters[transformedIndex];
@@ -77,7 +79,7 @@ export function getLetter(str: string, index: number): Letter {
     letter.transformedIndex = transformedIndex;
 
     return letter;
-  } catch(e) {
+  } catch {
     return letter;
   }
 }
@@ -88,7 +90,7 @@ export function transform(str: string): Word {
       return this.letters.map((letter: Letter) => letter.transformed).join('');
     },
     letters: [],
-    transform: function(str: string) {
+    transform: function (str: string) {
       const letters: Letter[] = [];
 
       for (let i = 0; i < str.length; i++) {
@@ -100,7 +102,7 @@ export function transform(str: string): Word {
       }
 
       this.letters = letters;
-    }
+    },
   };
 
   for (let i = 0; i < str.length; i++) {
@@ -117,27 +119,24 @@ export function debounce(fn: Function, ms: number): Function {
     clearTimeout(timeout);
 
     timeout = setTimeout(() => {
-      fn(...args)
+      fn(...args);
     }, ms);
   };
 }
 
 export function canvasToDataUrlDebug(canvas: HTMLCanvasElement): void {
-  const formats = [
-    'apng',
-    'bmp',
-    'gif',
-    'x-icon',
-    'jpeg',
-    'png',
-    'svg+xml',
-    'tiff',
-    'webp'
-  ].reduce((cases, format) => {
+  interface CanvasFormat {
+    format: string;
+    quality: number;
+  }
+
+  const formats = ['apng', 'bmp', 'gif', 'x-icon', 'jpeg', 'png', 'svg+xml', 'tiff', 'webp'].reduce<
+    CanvasFormat[]
+  >((cases, format) => {
     for (let quality = 0.01; quality < 1; quality += 0.01) {
       cases.push({
         format,
-        quality: +quality.toFixed(2)
+        quality: +quality.toFixed(2),
       });
     }
 
@@ -155,7 +154,7 @@ export function canvasToDataUrlDebug(canvas: HTMLCanvasElement): void {
         quality: format.quality,
         length: data.length,
         data,
-      })
+      });
 
       if (index === arr.length - 1) {
         results.sort((a, b) => a.length - b.length);
